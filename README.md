@@ -4,8 +4,8 @@ Example ROS catkin package that utilizes the OpenPose library from https://githu
 
 ## System
 Tested on:
-* Ubuntu 18.04
-* ROS Melodic
+* Ubuntu 20.04
+* ROS Noetic
 
 ## Installation Steps
 
@@ -21,21 +21,17 @@ Tested on:
 3. Install openpose using instructions from here: https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/b1cb2b69cf8c4c288921e48c37f339a64db26f58/doc/installation/0_index.md. Make sure to run `sudo make install` in the build folder at the end.
 4. Clone this repository into your catkin_workspace/src directory.
    ```bash
-   git clone https://github.com/firephinx/openpose_ros.git
+   git clone https://github.com/GJXS1980/openpose_ros.git
+   cd openpose_ros/openpose_ros
+   wget https://github.com/GJXS1980/openpose_ros/releases/download/v0.1/models.zip
+   unzip models.zip
+
    ```
-5. Modify the model_folder line in openpose_ros/src/openpose_flags.cpp to where openpose is installed (line 30).
+5. Modify the model_folder line in openpose_ros/src/openpose_flags.cpp to where openpose is installed (line 18).
    ```bash
    DEFINE_string(model_folder,             "/path/to/openpose/models/",      "Folder path (absolute or relative) where the models (pose, face, ...) are located.");
    ```
-6. Modify the image_topic parameter in openpose_ros/launch/openpose_ros.launch to the image_topic you want to process.
-   ```bash
-   <param name="image_topic"     value="/camera/image_raw" />
-   ```
-7. Modify the other parameters in openpose_ros/src/openpose_flags.cpp and openpose_ros/launch/openpose_ros.launch to your liking such as enabling face and hands detection.
-8. Run catkin_make from your catkin_workspace directory.
-
-### Potential Installation Issues
-1. If cv_bridge is causing you errors and/or you decide to use OpenCV 3.2+, copy the cv_bridge folder from https://github.com/ros-perception/vision_opencv into your catkin_workspace/src directory. 
+6. Modify the libs in openpose_ros/libs/
 
 ## Running
 ```bash
